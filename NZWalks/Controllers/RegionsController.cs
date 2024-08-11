@@ -19,6 +19,7 @@ namespace NZWalks.Controllers
             this.dbContext = dbContext;
         }
 
+        // asynchronous endpoints
 
         //GET ALL REGIONS
         // GET: https://localhost:portnumber/api/regions
