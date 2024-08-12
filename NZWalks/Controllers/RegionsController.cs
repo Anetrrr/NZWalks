@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NZWalks.Data;
@@ -15,11 +16,13 @@ namespace NZWalks.Controllers
     {
         private readonly NZWalksDbContext dbContext;
         private readonly IRegionRepository regionRepository;
+        private readonly IMapper mapper;
 
-        public RegionsController(NZWalksDbContext dbContext, IRegionRepository regionRepository)
+        public RegionsController(NZWalksDbContext dbContext, IRegionRepository regionRepository, IMapper mapper)
         {
             this.dbContext = dbContext;
             this.regionRepository = regionRepository;
+            this.mapper = mapper;
         }
 
         // asynchronous endpoints
@@ -35,7 +38,7 @@ namespace NZWalks.Controllers
             var regionsDomain =  await regionRepository.GetAllAsync();
 
             //Map Domain Models to DTOs - we return DTOs back to the client, not the Domain Models
-            var regionsDto = new List<RegionDTO>();
+          /*  var regionsDto = new List<RegionDTO>();
 
             foreach (var regionDomain in regionsDomain)
             {
@@ -48,9 +51,12 @@ namespace NZWalks.Controllers
                     RegionImageUrl = regionDomain.RegionImageUrl
                 });
             }
+          */
+
+           var regionDto = mapper.Map<List<RegionDTO>> (regionsDomain);
 
             // Return DTOs
-            return Ok(regionsDto);
+            return Ok(regionDto);
         }
 
         //GET SINGLE REGION
@@ -72,14 +78,19 @@ namespace NZWalks.Controllers
                 return NotFound();
             }
 
+            //map from domain to dto
 
-            var regionDto = new RegionDTO
+          var regionDto =  mapper.Map<RegionDTO>(regionDomain);
+
+
+          /*  var regionDto = new RegionDTO
             {
                 Id = regionDomain.Id,
                 Code = regionDomain.Code,
                 Name = regionDomain.Name,
                 RegionImageUrl = regionDomain.RegionImageUrl
             };
+          */
 
             return Ok(regionDto);
 
@@ -91,27 +102,33 @@ namespace NZWalks.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] AddRegionRequestDto addRegionRequestDto)
         {
-
+            var regionDomainModel = mapper.Map <Region> (addRegionRequestDto);
             // Map or convert dto to domain model
 
-            var regionDomainModel = new Region
+            
+
+           /* var regionDomainModel = new Region
             {
                 Code = addRegionRequestDto.Code,
                 Name = addRegionRequestDto.Name,
                 RegionImageUrl = addRegionRequestDto.RegionImageUrl
 
             };
+           */
 
             await regionRepository.CreateAsync(regionDomainModel);
 
             //Map domain model back to dto
-            var regionDto = new RegionDTO
+
+            var regionDto = mapper.Map<RegionDTO>(regionDomainModel);
+           /* var regionDto = new RegionDTO
             {
                 Id = regionDomainModel.Id,
                 Code = regionDomainModel.Code,
                 Name = regionDomainModel.Name,
                 RegionImageUrl = regionDomainModel.RegionImageUrl
             };
+           */
 
 
             return CreatedAtAction(nameof(GetById), new { id = regionDomainModel.Id }, regionDto);
@@ -126,12 +143,14 @@ namespace NZWalks.Controllers
         {
 
             //Map dto to domain model
-            var regionDomainModel = new Region
+            var regionDomainModel = mapper.Map<Region>(updateRegionRequestDto);
+           /* var regionDomainModel = new Region
             {
                 Code = updateRegionRequestDto.Code,
                 Name = updateRegionRequestDto.Name,
                 RegionImageUrl = updateRegionRequestDto.RegionImageUrl
             };
+           */
 
             // Check if region exists
            
@@ -142,25 +161,14 @@ namespace NZWalks.Controllers
                 return NotFound();
             }
 
+            //Map domain model back to dto
+            var regionDto= mapper.Map<RegionDTO>(regionDomainModel);
 
-            //Map dto to Domain Model
-            regionDomainModel.Code = updateRegionRequestDto.Code;
+          /*  regionDomainModel.Code = updateRegionRequestDto.Code;
             regionDomainModel.Name = updateRegionRequestDto.Name;
             regionDomainModel.RegionImageUrl = updateRegionRequestDto.RegionImageUrl;
-
-
-            await dbContext.SaveChangesAsync();
-
-            //mapping back to dto
-            var regionDto = new RegionDTO
-            {
-                Id = regionDomainModel.Id,
-                Code = regionDomainModel.Code,
-                Name = regionDomainModel.Name,
-                RegionImageUrl = regionDomainModel.RegionImageUrl
-
-            };
-
+*/
+        
             return Ok(regionDto);
 
         }
@@ -176,15 +184,8 @@ namespace NZWalks.Controllers
             if (regionDomain == null ) { return NotFound(); }
 
             //map domain model to dto
-
-            var regionDto = new RegionDTO
-            {
-                Id = regionDomain.Id,
-                Code = regionDomain.Code,
-                Name = regionDomain.Name,
-                RegionImageUrl = regionDomain.RegionImageUrl
-            };
-
+            var regionDto = mapper.Map<RegionDTO>(regionDomain);
+            
             return Ok("Successfully deleted");
         }
     }
