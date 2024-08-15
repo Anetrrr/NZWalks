@@ -12,8 +12,8 @@ using NZWalks.Data;
 namespace NZWalks.Migrations
 {
     [DbContext(typeof(NZWalksDbContext))]
-    [Migration("20240813141245_Seeding Data")]
-    partial class SeedingData
+    [Migration("20240815164425_Seeding Check")]
+    partial class SeedingCheck
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -98,6 +98,20 @@ namespace NZWalks.Migrations
                             Code = "RST",
                             Name = "Rosantine Hills",
                             RegionImageUrl = "rosant.nz"
+                        },
+                        new
+                        {
+                            Id = new Guid("3cf0769a-7b41-4cd9-b9f7-203f8fd84aec"),
+                            Code = "HVAL",
+                            Name = "Hollow Valleys",
+                            RegionImageUrl = "scary1.img"
+                        },
+                        new
+                        {
+                            Id = new Guid("608c6f34-453c-4891-b332-1499808438f9"),
+                            Code = "IMH",
+                            Name = "Icy Mountain hills",
+                            RegionImageUrl = "icecaps.img"
                         });
                 });
 

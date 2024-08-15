@@ -39,17 +39,17 @@ namespace NZWalks.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("176f2d2e-b451-4765-a0ad-ee1136a8d6c9"),
+                            Id = new Guid("2d77df5b-a611-490a-a73e-f4ffaecdc076"),
                             Name = "Easy"
                         },
                         new
                         {
-                            Id = new Guid("334d59cc-fe13-4d37-87b4-20888e9f7d59"),
+                            Id = new Guid("23d2c2ed-5f5f-406b-babf-aff01be60e17"),
                             Name = "Medium"
                         },
                         new
                         {
-                            Id = new Guid("a615a068-f66c-42f5-ad73-579e59acb867"),
+                            Id = new Guid("f4d29e5e-c84f-4aaf-92cf-3a7f072eaead"),
                             Name = "Hard"
                         });
                 });
@@ -96,6 +96,20 @@ namespace NZWalks.Migrations
                             Code = "RST",
                             Name = "Rosantine Hills",
                             RegionImageUrl = "rosant.nz"
+                        },
+                        new
+                        {
+                            Id = new Guid("3cf0769a-7b41-4cd9-b9f7-203f8fd84aec"),
+                            Code = "HVAL",
+                            Name = "Hollow Valleys",
+                            RegionImageUrl = "scary1.img"
+                        },
+                        new
+                        {
+                            Id = new Guid("608c6f34-453c-4891-b332-1499808438f9"),
+                            Code = "IMH",
+                            Name = "Icy Mountain hills",
+                            RegionImageUrl = "icecaps.img"
                         });
                 });
 

@@ -26,19 +26,19 @@ namespace NZWalks.Data
             {
                 new Difficulty()
                 {
-                    Id = Guid.Parse("176f2d2e-b451-4765-a0ad-ee1136a8d6c9"),
+                    Id = Guid.Parse("2d77df5b-a611-490a-a73e-f4ffaecdc076"),
                     Name = "Easy"
 
                 },
                 new Difficulty()
                 {
-                    Id = Guid.Parse("334d59cc-fe13-4d37-87b4-20888e9f7d59"),
+                    Id = Guid.Parse("23d2c2ed-5f5f-406b-babf-aff01be60e17"),
                     Name = "Medium"
 
                 },
                 new Difficulty()
                 {
-                    Id = Guid.Parse("a615a068-f66c-42f5-ad73-579e59acb867"),
+                    Id = Guid.Parse("f4d29e5e-c84f-4aaf-92cf-3a7f072eaead"),
                     Name = "Hard"
 
                 }
@@ -55,7 +55,7 @@ namespace NZWalks.Data
             {
                 new Region()
                 {
-                    Id = Guid.Parse("d2e50bf4-b711-4740-9621-e15eb0de3096"),
+                    Id = Guid.Parse("   "),
                     Name = "Adamanton",
                     Code = "ADM",
                     RegionImageUrl = "adm.nz"
@@ -75,6 +75,20 @@ namespace NZWalks.Data
                     Name = "Rosantine Hills",
                     Code = "RST",
                     RegionImageUrl = "rosant.nz"
+                },
+                   new Region()
+                {
+                    Id = Guid.Parse("3cf0769a-7b41-4cd9-b9f7-203f8fd84aec"),
+                    Name = "Hollow Valleys",
+                    Code = "HVAL",
+                    RegionImageUrl = "scary1.img"
+                },
+                    new Region()
+                {
+                    Id = Guid.Parse("608c6f34-453c-4891-b332-1499808438f9"),
+                    Name = "Icy Mountain hills",
+                    Code = "IMH",
+                    RegionImageUrl = "icecaps.img"
                 }
             };
             //seed difficulties  to the database
