@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace NZWalks.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,9 +44,8 @@ namespace NZWalks.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LengthInKm = table.Column<double>(type: "float", nullable: false),
                     WalkImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DificultyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    RegionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DifficultyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    DifficultyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    RegionId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -63,6 +62,28 @@ namespace NZWalks.Migrations
                         principalTable: "Regions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Difficulties",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { new Guid("23d2c2ed-5f5f-406b-babf-aff01be60e17"), "Medium" },
+                    { new Guid("2d77df5b-a611-490a-a73e-f4ffaecdc076"), "Easy" },
+                    { new Guid("f4d29e5e-c84f-4aaf-92cf-3a7f072eaead"), "Hard" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Regions",
+                columns: new[] { "Id", "Code", "Name", "RegionImageUrl" },
+                values: new object[,]
+                {
+                    { new Guid("1bdbcb9e-c9fc-4744-8af3-7af2c9052cd5"), "FLX", "Felix Highway", "felix.nz" },
+                    { new Guid("2fbc129e-77c0-427a-8bfc-17bb21002e03"), "ADM", "Adamanton", "adm.nz" },
+                    { new Guid("3cf0769a-7b41-4cd9-b9f7-203f8fd84aec"), "HVAL", "Hollow Valleys", "scary1.img" },
+                    { new Guid("4ad9a282-fbd4-48d5-993a-da7e9e0a500f"), "RST", "Rosantine Hills", "rosant.nz" },
+                    { new Guid("608c6f34-453c-4891-b332-1499808438f9"), "IMH", "Icy Mountain hills", "icecaps.img" }
                 });
 
             migrationBuilder.CreateIndex(

@@ -78,7 +78,7 @@ namespace NZWalks.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("d2e50bf4-b711-4740-9621-e15eb0de3096"),
+                            Id = new Guid("2fbc129e-77c0-427a-8bfc-17bb21002e03"),
                             Code = "ADM",
                             Name = "Adamanton",
                             RegionImageUrl = "adm.nz"
@@ -124,9 +124,6 @@ namespace NZWalks.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("DifficultyId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("DificultyId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<double>("LengthInKm")

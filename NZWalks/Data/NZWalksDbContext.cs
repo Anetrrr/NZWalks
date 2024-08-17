@@ -55,7 +55,7 @@ namespace NZWalks.Data
             {
                 new Region()
                 {
-                    Id = Guid.Parse("   "),
+                    Id = Guid.Parse("2fbc129e-77c0-427a-8bfc-17bb21002e03"),
                     Name = "Adamanton",
                     Code = "ADM",
                     RegionImageUrl = "adm.nz"

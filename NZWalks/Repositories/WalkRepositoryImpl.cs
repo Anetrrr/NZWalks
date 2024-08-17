@@ -36,12 +36,12 @@ namespace NZWalks.Repositories
 
         public async Task<List<Walk>> GetAllAsync()
         {
-            return await dbContext.Walks.ToListAsync();
+            return await dbContext.Walks.Include("Difficulty").Include("Region").ToListAsync();
         }
 
         public async Task<Walk?> GetByIdAsync(Guid id)
         {
-            return await dbContext.Walks.FirstOrDefaultAsync(x => x.Id == id);
+            return await dbContext.Walks.Include("Difficulty").Include("Region").FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<Walk?> UpdateAsync(Guid id, Walk walk)
@@ -54,10 +54,10 @@ namespace NZWalks.Repositories
             }
            existingWalk.Description = walk.Description;
             existingWalk.Name = walk.Name;
-            existingWalk.Region = walk.Region;
+            existingWalk.RegionId = walk.RegionId;
+            existingWalk.DifficultyId = walk.DifficultyId;
             existingWalk.LengthInKm = walk.LengthInKm;
             existingWalk.WalkImageUrl = walk.WalkImageUrl;
-            existingWalk.Description = walk.Description;
             existingWalk.Difficulty = walk.Difficulty;
 
             await dbContext.SaveChangesAsync();

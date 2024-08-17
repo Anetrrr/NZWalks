@@ -12,8 +12,8 @@ using NZWalks.Data;
 namespace NZWalks.Migrations
 {
     [DbContext(typeof(NZWalksDbContext))]
-    [Migration("20231123092857_Initial Migration")]
-    partial class InitialMigration
+    [Migration("20240815213244_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -37,6 +37,23 @@ namespace NZWalks.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Difficulties");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("2d77df5b-a611-490a-a73e-f4ffaecdc076"),
+                            Name = "Easy"
+                        },
+                        new
+                        {
+                            Id = new Guid("23d2c2ed-5f5f-406b-babf-aff01be60e17"),
+                            Name = "Medium"
+                        },
+                        new
+                        {
+                            Id = new Guid("f4d29e5e-c84f-4aaf-92cf-3a7f072eaead"),
+                            Name = "Hard"
+                        });
                 });
 
             modelBuilder.Entity("NZWalks.Models.Domain.Region", b =>
@@ -59,6 +76,43 @@ namespace NZWalks.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Regions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("2fbc129e-77c0-427a-8bfc-17bb21002e03"),
+                            Code = "ADM",
+                            Name = "Adamanton",
+                            RegionImageUrl = "adm.nz"
+                        },
+                        new
+                        {
+                            Id = new Guid("1bdbcb9e-c9fc-4744-8af3-7af2c9052cd5"),
+                            Code = "FLX",
+                            Name = "Felix Highway",
+                            RegionImageUrl = "felix.nz"
+                        },
+                        new
+                        {
+                            Id = new Guid("4ad9a282-fbd4-48d5-993a-da7e9e0a500f"),
+                            Code = "RST",
+                            Name = "Rosantine Hills",
+                            RegionImageUrl = "rosant.nz"
+                        },
+                        new
+                        {
+                            Id = new Guid("3cf0769a-7b41-4cd9-b9f7-203f8fd84aec"),
+                            Code = "HVAL",
+                            Name = "Hollow Valleys",
+                            RegionImageUrl = "scary1.img"
+                        },
+                        new
+                        {
+                            Id = new Guid("608c6f34-453c-4891-b332-1499808438f9"),
+                            Code = "IMH",
+                            Name = "Icy Mountain hills",
+                            RegionImageUrl = "icecaps.img"
+                        });
                 });
 
             modelBuilder.Entity("NZWalks.Models.Domain.Walk", b =>
@@ -72,9 +126,6 @@ namespace NZWalks.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("DifficultyId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("DificultyId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<double>("LengthInKm")

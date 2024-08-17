@@ -11,12 +11,13 @@ namespace NZWalks.Models.DTO
         public double LengthInKm { get; set; }
         public string? WalkImageUrl { get; set; }
 
-        public Guid DificultyId { get; set; }
-        public Guid RegionId { get; set; }
+        //we can get this information from the navigation property section below:
+        //public Guid DifficultyId { get; set; }
+       // public Guid RegionId { get; set; }
 
         //Navigation property
 
-        public Difficulty Difficulty { get; set; }
-        public Region Region { get; set; }
+        public DifficultyDTO Difficulty { get; set; }
+        public RegionDTO Region { get; set; }
     }
 }
