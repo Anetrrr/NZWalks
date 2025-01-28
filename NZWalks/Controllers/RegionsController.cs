@@ -149,6 +149,7 @@ namespace NZWalks.Controllers
         [HttpPut]
         [ValidateModel]
         [Route("{id:Guid}")]
+        [Authorize(Roles = "Writer")]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateRegionRequestDto updateRegionRequestDto)
         {
 
@@ -160,6 +161,7 @@ namespace NZWalks.Controllers
                 Name = updateRegionRequestDto.Name,
                 RegionImageUrl = updateRegionRequestDto.RegionImageUrl
             };
+
            */
 
             // Check if region exists
@@ -187,6 +189,8 @@ namespace NZWalks.Controllers
 
         [HttpDelete]
         [Route("{id:Guid}")]
+        [Authorize(Roles = "Writer, Reader")]
+
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             var regionDomain = await regionRepository.DeleteByIdAsync(id);
