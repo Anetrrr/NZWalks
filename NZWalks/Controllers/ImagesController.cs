@@ -53,7 +53,7 @@ namespace NZWalks.Controllers
                        FileSizeInBytes = request.File.Length,
                        FileDescription = request.FileDescription,
                     };
-
+                
                     //if (imageRepository == null)
                     //{
                     //    ModelState.AddModelError("Repository",

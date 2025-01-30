@@ -52,7 +52,13 @@ namespace NZWalks.Controllers
 
             //Map Domain odel to DTO
 
+
             var walkDto = mapper.Map<List<WalkDTO>>(walksDomainModel);
+
+
+            //create  an exception
+
+            throw new Exception("This is a new exception");
 
             return Ok(walkDto);
         }

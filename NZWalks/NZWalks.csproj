@@ -19,6 +19,7 @@
     <PackageReference Include="Serilog" Version="4.1.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="8.0.3" />
     <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.36.0" />
   </ItemGroup>
@@ -26,6 +27,7 @@
   <ItemGroup>
     <Folder Include="Migrations\" />
     <Folder Include="Image\" />
+    <Folder Include="Logs\" />
   </ItemGroup>
 
 </Project>
